@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>zonguldak tanıtım videosu</title>
+  <style>
+  body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+}
+
+.controls {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+}
+
+button {
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="video-container">
+    <video id="videoPlayer" controls>
+      <source src="resimleri/ZONGULDAK Tanıtım Filmi.mp4"type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+      <button id="playPauseBtn">Oynat/Duraklat</button>
+      <button id="fullscreenBtn">Tam Ekran</button>
+      <button id="volumeBtn">Ses Aç/Kapa</button>
+    </div>
+  </div>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const video = document.getElementById('videoPlayer');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const fullscreenBtn = document.getElementById('fullscreenBtn');
+  const volumeBtn = document.getElementById('volumeBtn');
+
+  playPauseBtn.addEventListener('click', function() {
+    if (video.paused || video.ended) {
+      video.play();
+      playPauseBtn.textContent = 'Duraklat';
+    } else {
+      video.pause();
+      playPauseBtn.textContent = 'Oynat';
+    }
+  });
+
+  fullscreenBtn.addEventListener('click', function() {
+    if (video.requestFullscreen) {
+      video.requestFullscreen();
+    } else if (video.webkitRequestFullscreen) {
+      video.webkitRequestFullscreen();
+    } else if (video.msRequestFullscreen) {
+      video.msRequestFullscreen();
+    }
+  });
+
+  volumeBtn.addEventListener('click', function() {
+    if (video.muted) {
+      video.muted = false;
+      volumeBtn.textContent = 'Ses Kapat';
+    } else {
+      video.muted = true;
+      volumeBtn.textContent = 'Ses Aç';
+    }
+  });
+});
+
+  </script>
+</body>
+</html>
